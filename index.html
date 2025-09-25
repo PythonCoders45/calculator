@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    background: #222;
+    color: #fff;
+  }
+  .calculator {
+    background: #333;
+    padding: 20px;
+    border-radius: 12px;
+    width: 360px;
+  }
+  #display {
+    width: 100%;
+    font-size: 2em;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  button {
+    padding: 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #555;
+    color: #fff;
+    transition: 0.2s;
+  }
+  button:hover { background: #777; }
+  #history {
+    margin-top: 10px;
+    max-height: 120px;
+    overflow-y: auto;
+    background: #111;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 0.9em;
+  }
+  #graph {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    background: #111;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" readonly>
+    
+    <div class="buttons">
+        <!-- Row 1 -->
+        <button onclick="clearInput()">C</button>
+        <button onclick="backspace()">⌫</button>
+        <button onclick="toggleDegree()" id="degRad">DEG</button>
+        <button onclick="append('(')">(</button>
+        <button onclick="append(')')">)</button>
+
+        <!-- Row 2 -->
+        <button onclick="memoryClear()">MC</button>
+        <button onclick="memoryRecall()">MR</button>
+        <button onclick="memoryAdd()">M+</button>
+        <button onclick="memorySubtract()">M-</button>
+        <button onclick="append('^')">^</button>
+
+        <!-- Row 3 -->
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')">÷</button>
+        <button onclick="append('π')">π</button>
+
+        <!-- Row 4 -->
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('*')">×</button>
+        <button onclick="append('e')">e</button>
+
+        <!-- Row 5 -->
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')">−</button>
+        <button onclick="append('!')">!</button>
+
+        <!-- Row 6 -->
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="append('+')">+</button>
+        <button onclick="calculate()" style="grid-column: span 2;">=</button>
+    </div>
+
+    <!-- Advanced functions -->
+    <div class="buttons" style="margin-top: 10px;">
+        <button onclick="append('sin(')">sin</button>
+        <button onclick="append('cos(')">cos</button>
+        <button onclick="append('tan(')">tan</button>
+        <button onclick="append('log(')">log</button>
+        <button onclick="append('ln(')">ln</button>
+        <button onclick="append('sqrt(')">√</button>
+        <button onclick="append('exp(')">exp</button>
+        <button onclick="append('**')">x²</button>
+        <button onclick="append('/')">/</button>
+    </div>
+
+    <div id="history"></div>
+    <canvas id="graph"></canvas>
+</div>
+
+<script src="calculator.js"></script>
+</body>
+</html>
